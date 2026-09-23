@@ -1,0 +1,11 @@
+services:
+  openrouter-studio:
+    networks:
+      default:
+      proxy:
+        aliases:
+          - studio
+
+networks:
+  proxy:
+    external: true

@@ -15,6 +15,7 @@ import {
   rebuildDynamicHandleCountsFromEdges,
 } from "@/lib/canvas-handles";
 import { stripNodesForLocalBackup } from "@/lib/studio-local-backup";
+import { newId } from "@/lib/utils";
 
 /** Cloud autosave: layout-only changes get a longer debounce (drag, select). */
 export type CloudSaveMutationTier = "layout" | "structural";
@@ -518,7 +519,7 @@ export const useStudioStore = create<StudioState>()(
       saveWorkflow: (name) => {
         const { nodes, edges, workflows } = get();
         const workflow: Workflow = {
-          id: crypto.randomUUID(),
+          id: newId(),
           name,
           savedAt: new Date().toISOString(),
           nodes: stripNodesForLocalBackup(nodes),
